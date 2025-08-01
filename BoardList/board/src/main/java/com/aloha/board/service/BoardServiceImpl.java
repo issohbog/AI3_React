@@ -128,10 +128,10 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public boolean deleteById(String id) {
-        // 게시글 삭제 
-        int result = boardMapper.deleteById(id);
         // 종속된 첨부파일 삭제 
         Boards board = boardMapper.selectById(id);
+        // 게시글 삭제 
+        int result = boardMapper.deleteById(id);
         Long no = board.getNo();
         Files file = new Files();
         file.setPTable("boards");

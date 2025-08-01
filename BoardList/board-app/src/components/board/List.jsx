@@ -10,6 +10,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
+
 const List = ({ list, pagination }) => {
   // const boards = [
   //   { no: 1, id: 'board1', title: '제목1', writer: '작성자1', content: '내용1', createdAt: '2025-07-30 10:55:25'}, 

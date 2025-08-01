@@ -60,12 +60,24 @@ public class FileController {
         }
     }
     
-    @PostMapping()
-    public ResponseEntity<?> create(@RequestBody Files files) {
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> createForm(Files files) {
         try {
-            boolean result = fileService.insert(files);
+            boolean result = fileService.upload(files);
             if( result )
-                return new ResponseEntity<>("SUCCESS", HttpStatus.CREATED);
+                return new ResponseEntity<>(files, HttpStatus.CREATED);
+            else 
+                return new ResponseEntity<>("FAIL", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createJSON(@RequestBody Files files) {
+        try {
+            boolean result = fileService.upload(files);
+            if( result )
+                return new ResponseEntity<>(files, HttpStatus.CREATED);
             else 
                 return new ResponseEntity<>("FAIL", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
